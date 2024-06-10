@@ -1,19 +1,10 @@
-variable "first_name" {
-  type     = string
-  nullable = false
-}
-
-variable "last_name" {
-  type     = string
-  nullable = false
-}
-
-variable "team" {
-  type     = string
-  nullable = false
-}
-
-variable "username" {
-  type     = string
-  nullable = false
+variable "users" {
+  description = "A map of users to create with their respective policies"
+  type = map(object({
+    first_name = string
+    last_name  = string
+    team       = string
+    username   = string
+    policies   = list(string)
+  }))
 }

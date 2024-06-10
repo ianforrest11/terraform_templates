@@ -1,10 +1,12 @@
 # create individual user
 resource "aws_iam_user" "this" {
-  name = var.username
+  for_each = var.users
+  name = each.key
   tags = {
-    first_name = var.first_name
-    last_name = var.last_name
-    team = var.team
+    username   = each.key
+    first_name = each.value.first_name
+    last_name  = each.value.last_name
+    team       = each.value.team
   }
 }
 
@@ -15,8 +17,23 @@ resource "aws_iam_user_login_profile" "this" {
 }
 
 # attach policies to users
-resource "aws_iam_user_policy" "this" {
-  name   = "test"
-  user   = aws_iam_user.this.name
-  policy = data.aws_iam_policy_document.lb_ro.json
+resource "aws_iam_user_policy_attachment" "this" {
+  for_each = {
+    for user, details in var.users :
+    user => {
+      for policy in details.policies :
+      policy => lookup(local.policy_arns, policy)
+    }
+  }
+
+  user       = aws_iam_user.user[each.key].name
+  policy_arn = each.value
+}
+
+locals {
+  policy_arns = {
+    policy1 = module.policies.policy1_arn
+    policy2 = module.policies.policy2_arn
+    policy3 = module.policies.policy3_arn
+  }
 }
