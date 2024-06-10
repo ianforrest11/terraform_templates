@@ -1,14 +1,17 @@
 variable "twofa_policy_name" {
-  type     = string
+  default  = "two-fa-iam-policy"
   nullable = false
+  type     = string
 }
 
 variable "master_policy_name" {
-  type     = string
+  default  = "master-iam-policy"
   nullable = false
+  type     = string
 }
 
 variable "readonly_policy_name" {
-  type     = string
+  default  = "readonly-iam-policy"
   nullable = false
+  type     = string
 }
