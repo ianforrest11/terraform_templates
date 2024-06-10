@@ -3,7 +3,6 @@ resource "aws_iam_user" "this" {
   for_each = var.users
   name = each.key
   tags = {
-    username   = each.key
     first_name = each.value.first_name
     last_name  = each.value.last_name
     team       = each.value.team
