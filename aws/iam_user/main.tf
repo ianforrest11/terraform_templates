@@ -12,7 +12,7 @@ resource "aws_iam_user" "this" {
 # give users login information
 resource "aws_iam_user_login_profile" "this" {
   for_each = var.users 
-  user    = each.value.name
+  user    = each.key
   password_reset_required = true
 }
 
