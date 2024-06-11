@@ -9,3 +9,7 @@ output "password" {
     }
   }
 }
+
+output "login_profile_count" {
+  value = length(aws_iam_user_login_profile.this)
+}
