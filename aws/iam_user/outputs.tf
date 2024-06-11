@@ -5,10 +5,10 @@ output "password" {
 
 output "user_name" {
   description = "The name of the created IAM user."
-  value       = aws_iam_user.this[each.key].name
+  value       = each.value.name
 }
 
 output "user_arn" {
   description = "The ARN of the created IAM user."
-  value       = aws_iam_user.this[each.key].arn
+  value       = each.value.arn
 }

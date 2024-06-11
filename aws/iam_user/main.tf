@@ -11,13 +11,14 @@ resource "aws_iam_user" "this" {
 
 # give users login information
 resource "aws_iam_user_login_profile" "this" {
-  user    = aws_iam_user.this[each.key].name
+  for_each = var.users 
+  user    = each.value.name
   password_reset_required = true
 }
 
 # attach policies to users
 resource "aws_iam_user_policy_attachment" "user_policy_attachment" {
   for_each = { for user, details in var.users : user => details.policies }
-  user       = aws_iam_user.this[each.key].name
+  user       = each.value.name
   policy_arn = each.value
 }
