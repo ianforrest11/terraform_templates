@@ -11,7 +11,7 @@ resource "aws_iam_user" "this" {
 
 # give users login information
 resource "aws_iam_user_login_profile" "this" {
-  user    = aws_iam_user.this.name
+  user    = aws_iam_user.this[each.key].name
   password_reset_required = true
 }
 
