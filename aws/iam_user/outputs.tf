@@ -1,11 +1,11 @@
 # Output user information
-output "users_info" {
-  description = "A map of usernames to their respective ARNs and passwords."
+output "password" {
+  description = "The username and encrypted password of the created IAM users"
   value = {
-    for user, details in var.users : user => {
-      # arn      = details.arn
-      username = details.username
-      password = aws_iam_user_login_profile.this[user].encrypted_password
+    for username, login_profile in aws_iam_user_login_profile.this :
+    username => {
+      password = login_profile.encrypted_password
+      username = username
     }
   }
 }
