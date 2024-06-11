@@ -16,15 +16,8 @@ resource "aws_iam_user_login_profile" "this" {
 }
 
 # attach policies to users
-resource "aws_iam_user_policy_attachment" "this" {
-  for_each = {
-    for user, details in var.users :
-    user => {
-      for policy in details.policies :
-      policy => lookup(local.policy_arns, policy)
-    }
-  }
-
-  user       = aws_iam_user.user[each.key].name
+resource "aws_iam_user_policy_attachment" "user_policy_attachment" {
+  for_each = { for user, details in var.users : user => details.policies }
+  user       = aws_iam_user.this[each.key].name
   policy_arn = each.value
 }
