@@ -7,4 +7,5 @@ variable "users" {
     username   = string
     policies   = list(string)
   }))
+  default     = {}
 }
