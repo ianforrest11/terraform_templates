@@ -20,5 +20,5 @@ resource "aws_iam_user_login_profile" "this" {
 resource "aws_iam_user_policy_attachment" "this" {
   for_each = { for user, details in var.users : user => details.policies }
   user       = each.key
-  policy_arn = each.value[0]
+  policy_arn = each.value[*]
 }
