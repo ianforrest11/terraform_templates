@@ -3,7 +3,6 @@ output "users_info" {
   value = { for user in var.users :
     user.username => {
       arn      = user.arn,
-      password = random_password.user_password[user.name].result
     }
   }
 }
