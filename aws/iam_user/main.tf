@@ -9,19 +9,10 @@ resource "aws_iam_user" "this" {
   }
 }
 
-# create random password for user
-resource "random_password" "this" {
-  for_each = var.users
-
-  length  = 16
-  special = true
-}
-
 # give users login information
 resource "aws_iam_user_login_profile" "this" {
   for_each = var.users 
   user    = each.value.name
-  password = random_password.this[each.key].result
   password_reset_required = true
 }
 
