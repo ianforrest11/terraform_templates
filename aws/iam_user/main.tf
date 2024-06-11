@@ -16,9 +16,31 @@ resource "aws_iam_user_login_profile" "this" {
   password_reset_required = true
 }
 
+# Flatten the user-policy map
+locals {
+  user_policy_map = {
+    for user, details in var.users : user => [
+      for policy in details.policies : {
+        user       = details.username
+        policy_arn = policy
+      }
+    ]
+  }
+  flattened_user_policy_map = flatten([
+    for user, policies in local.user_policy_map : [
+      for policy in policies : {
+        user       = policy.user
+        policy_arn = policy.policy_arn
+      }
+    ]
+  ])
+}
+
 # attach policies to users
 resource "aws_iam_user_policy_attachment" "this" {
-  for_each = { for user, details in var.users : user => details.policies }
-  user       = each.key
-  policy_arn = each.value[*]
+  for_each = {
+    for idx, user_policy in local.flattened_user_policy_map : "${user_policy.user}-${idx}" => user_policy
+  }
+  user       = each.value.user
+  policy_arn = each.value.policy_arn
 }
