@@ -28,11 +28,3 @@ resource "aws_iam_user_policy_attachment" "this" {
   user       = aws_iam_user.user[each.key].name
   policy_arn = each.value
 }
-
-locals {
-  policy_arns = {
-    policy1 = module.policies.policy1_arn
-    policy2 = module.policies.policy2_arn
-    policy3 = module.policies.policy3_arn
-  }
-}
