@@ -10,7 +10,7 @@ output "password" {
   }
 }
 
-output "password" {
+output "password2" {
   value = aws_iam_user_login_profile.this.encrypted_password
 }
 
