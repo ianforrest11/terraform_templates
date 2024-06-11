@@ -5,7 +5,7 @@ output "users_info" {
     for user, details in aws_iam_user.user : user => {
       arn      = details.arn
       username = details.name
-      password = aws_iam_user_login_profile.login_profile[user].encrypted_password
+      password = aws_iam_user_login_profile.this[user].encrypted_password
     }
   }
 }
