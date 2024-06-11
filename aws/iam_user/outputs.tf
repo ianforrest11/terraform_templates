@@ -11,7 +11,7 @@ output "password" {
 }
 
 output "password2" {
-  value = aws_iam_user_login_profile.this.encrypted_password
+  value = aws_iam_user_login_profile.this[each.key].encrypted_password
 }
 
 output "login_profile_count" {
