@@ -1,14 +1,9 @@
-output "password" {
-  description = "The password  of the created IAM user."
-  value = aws_iam_user_login_profile.this.encrypted_password
-} 
-
-output "user_name" {
-  description = "The name of the created IAM user."
-  value       = each.value.name
-}
-
-output "user_arn" {
-  description = "The ARN of the created IAM user."
-  value       = each.value.arn
+output "users_info" {
+  description = "A map of usernames to their respective ARNs and passwords."
+  value = { for user in aws_iam_user.user :
+    user.name => {
+      arn      = user.arn,
+      password = random_password.user_password[user.name].result
+    }
+  }
 }
