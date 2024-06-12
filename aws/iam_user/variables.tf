@@ -5,6 +5,7 @@ variable "users" {
     last_name  = string
     username   = string
     team       = string
+    groups     = list(string)
     policies   = list(string)
   }))
   default     = {}
