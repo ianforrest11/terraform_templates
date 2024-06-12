@@ -21,7 +21,7 @@ resource "aws_iam_user_login_profile" "this" {
   }
 }
 
-# Flatten the user-policy and user-group maps
+# Flatten the user-policy map
 locals {
   user_policy_map = {
     for user, details in var.users : user => [
