@@ -21,7 +21,7 @@ resource "aws_iam_user_login_profile" "this" {
   }
 }
 
-# Flatten the user-policy map
+# Flatten the user-policy and user-group maps
 locals {
   user_policy_map = {
     for user, details in var.users : user => [
@@ -39,14 +39,6 @@ locals {
       }
     ]
   ])
-  user_group_map = {
-    for user, details in var.users : user => [
-      for policy in details.policies : {
-        user       = details.username
-        policy_arn = policy
-      }
-    ]
-  }
 }
 
 # attach policies to users
@@ -62,9 +54,5 @@ resource "aws_iam_user_policy_attachment" "this" {
 resource "aws_iam_user_group_membership" "this" {
   for_each = aws_iam_user.this 
   user     = each.key
-
-  groups = [
-    aws_iam_group.group1.name,
-    aws_iam_group.group2.name,
-  ]
+  groups   = each.value.groups
 }
