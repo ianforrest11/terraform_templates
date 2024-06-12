@@ -14,6 +14,12 @@ resource "aws_iam_user_login_profile" "this" {
   for_each = aws_iam_user.this 
   user     = each.key
   password_reset_required = true
+  lifecycle {
+    ignore_changes = [
+      password,
+      password_reset_required
+    ]
+  }
 }
 
 # Flatten the user-policy map
