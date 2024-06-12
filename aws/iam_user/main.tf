@@ -52,7 +52,7 @@ resource "aws_iam_user_policy_attachment" "this" {
 
 # attach users to groups
 resource "aws_iam_user_group_membership" "this" {
-  for_each = aws_iam_user.this 
+  for_each = var.users
   user     = each.key
   groups   = each.value.groups
 }
