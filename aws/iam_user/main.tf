@@ -17,7 +17,6 @@ resource "aws_iam_user_login_profile" "this" {
   lifecycle {
     ignore_changes = [
       password_reset_required,
-      user.access_keys
     ]
   }
 }
