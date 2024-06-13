@@ -3,7 +3,7 @@ resource "aws_iam_role" "this" {
   name = each.key
 
   # Terraform expression result to valid JSON syntax.
-  assume_role_policy = file("${path.module}/json/${each.value.assume_role_policy_name}.json")
+  assume_role_policy = file("../json/${each.value.assume_role_policy_name}.json")
 
   tags = {
     environment  = each.value.environment
