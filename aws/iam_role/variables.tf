@@ -1,8 +1,11 @@
-variable "identity_provider" {
-  description = "Identity provider configuration"
-  type = object({
-    client_id_list  = list(string)
-    provider_url    = string
-    thumbprint_list = list(string)
-  })
+variable "roles" {
+  description = "A map of roles to create with their respective policies"
+  type = map(object({
+    assume_role_policy_name = string
+    environment = string
+    name = string
+    policies   = list(string)
+    purpose = string
+  }))
+  default     = {}
 }
