@@ -2,7 +2,6 @@ resource "aws_iam_role" "this" {
   for_each = var.roles
   name = each.key
 
-  # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
   assume_role_policy = file("${path.module}/json/${each.value.assume_role_policy_name}.json")
 
