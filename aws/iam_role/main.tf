@@ -1,4 +1,4 @@
-resource "aws_iam_role" "test_role" {
+resource "aws_iam_role" "this" {
   for_each = var.roles
   name = each.key
 
