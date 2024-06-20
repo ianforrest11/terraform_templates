@@ -14,8 +14,3 @@ variable "instance_tenancy" {
   type     = string
   default  = "default"
 }
-
-variable "environment" {
-  nullable = false
-  type     = string
-}
