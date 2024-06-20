@@ -6,6 +6,7 @@ variable "name" {
 variable "cidr_block" {
   nullable = true
   type     = string
+  default  = "10.0.0.0/16"
 }
 
 variable "instance_tenancy" {
@@ -17,10 +18,4 @@ variable "instance_tenancy" {
 variable "environment" {
   nullable = false
   type     = string
-}
-
-variable "access_type" {
-  description = "used to determine if a VPC is public or private"
-  nullable    = false
-  type        = string
 }

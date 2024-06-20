@@ -5,6 +5,5 @@ resource "aws_vpc" "main" {
   tags = {
     Name        = var.name
     Environment = var.environment
-    Access      = var.access_type
   }
 }
