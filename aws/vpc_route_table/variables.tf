@@ -9,12 +9,6 @@ variable "subnets" {
   type        = list(string)
 }
 
-variable "type" {
-  description = "specify whether route table is public or private"
-  nullable = false
-  type     = string
-}
-
 variable "vpc_id" {
   nullable = false
   type     = string
