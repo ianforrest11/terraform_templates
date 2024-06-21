@@ -1,4 +1,5 @@
 variable "availability_zone" {
+  default  = null
   nullable = true
   type     = string
 }
