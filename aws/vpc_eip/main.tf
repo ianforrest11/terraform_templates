@@ -1,5 +1,5 @@
 resource "aws_eip" "lb" {
-  domain   = var.domain
+  vpc = var.vpc
   tags = {
     Name = var.name
   }
