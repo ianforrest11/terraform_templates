@@ -24,6 +24,7 @@ variable "ingress_rules" {
     prefix_list_ids  = list(string)
     security_groups  = list(string)
     self             = bool
+    description      = string
   }))
   default = []
 }
@@ -39,9 +40,11 @@ variable "egress_rules" {
     prefix_list_ids  = list(string)
     security_groups  = list(string)
     self             = bool
+    description      = string
   }))
   default = []
 }
+
 
 variable "tags" {
   description = "A map of tags to assign to the resource"
