@@ -26,19 +26,19 @@ variable "security_group_id" {
 variable "cidr_blocks" {
   description = "List of CIDR blocks"
   type        = list(string)
-  default     = []
+  default     = null
 }
 
 variable "ipv6_cidr_blocks" {
   description = "List of IPv6 CIDR blocks"
   type        = list(string)
-  default     = []
+  default     = null
 }
 
 variable "prefix_list_ids" {
   description = "List of prefix list IDs (for allowing access to VPC endpoints)"
   type        = list(string)
-  default     = []
+  default     = null
 }
 
 variable "source_security_group_id" {
@@ -50,7 +50,7 @@ variable "source_security_group_id" {
 variable "self" {
   description = "If true, the security group itself will be added as a source to this ingress rule"
   type        = bool
-  default     = false
+  default     = null
 }
 
 variable "description" {
