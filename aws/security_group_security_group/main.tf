@@ -14,6 +14,7 @@ resource "aws_security_group" "this" {
       prefix_list_ids = ingress.value.prefix_list_ids
       security_groups = ingress.value.security_groups
       self = ingress.value.self
+      description = ingress.value.description
     }
   }
 
@@ -28,6 +29,7 @@ resource "aws_security_group" "this" {
       prefix_list_ids = egress.value.prefix_list_ids
       security_groups = egress.value.security_groups
       self = egress.value.self
+      description = egress.value.description
     }
   }
 
