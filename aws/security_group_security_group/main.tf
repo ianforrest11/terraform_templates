@@ -33,5 +33,12 @@ resource "aws_security_group" "this" {
     }
   }
 
+  lifecycle {
+    ignore_changes = [
+      ingress,
+      egress
+    ]
+  }
+  
   tags = var.tags
 }
