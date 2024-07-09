@@ -16,7 +16,7 @@ locals {
     for role, details in var.roles : role => [
       for policy in details.policies : {
         role       = details.name
-        policy_arn = lookup(local.policies, policy)
+        policy_arn = lookup(var.policies, policy)
       }
     ]
   }

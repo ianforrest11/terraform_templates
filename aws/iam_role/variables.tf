@@ -9,3 +9,8 @@ variable "roles" {
   }))
   default     = {}
 }
+
+variable "policies" {
+  description = "A map of policy names to ARNs"
+  type = map(string)
+}
