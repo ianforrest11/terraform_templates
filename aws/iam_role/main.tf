@@ -1,13 +1,12 @@
 resource "aws_iam_role" "this" {
   for_each = var.roles
-  name = each.key
+  name     = each.key
 
-  # Terraform expression result to valid JSON syntax.
   assume_role_policy = file("../json/${each.value.assume_role_policy_name}.json")
 
   tags = {
-    environment  = each.value.environment
-    purpose      = each.value.purpose
+    environment = each.value.environment
+    purpose     = each.value.purpose
   }
 }
 
@@ -17,7 +16,7 @@ locals {
     for role, details in var.roles : role => [
       for policy in details.policies : {
         role       = details.name
-        policy_arn = policy
+        policy_arn = lookup(local.policies, policy)
       }
     ]
   }
@@ -31,7 +30,7 @@ locals {
   ])
 }
 
-# attach policies to roles
+# Attach policies to roles
 resource "aws_iam_role_policy_attachment" "this" {
   for_each = {
     for idx, role_policy in local.flattened_role_policy_map : "${role_policy.role}-${idx}" => role_policy
