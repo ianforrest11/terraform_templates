@@ -8,6 +8,11 @@ variable "cluster_version" {
   type     = string
 }
 
+variable "environment" {
+  nullable = false
+  type     = string
+}
+
 variable "eks_role_arn" {
   nullable = false
   type     = string
