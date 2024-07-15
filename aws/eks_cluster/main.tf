@@ -1,15 +1,15 @@
 resource "aws_eks_cluster" "this" {
-  name      = var.cluster_name
-  role_arn  = var.eks_role_arn
-  version   = var.cluster_version
+  name      = var.name
+  role_arn  = var.role_arn
+  version   = var.version
   
   vpc_config {
-    subnet_ids         = var.eks_subnet_ids
+    subnet_ids         = var.subnet_ids
     security_group_ids = var.security_group_ids
   }
 
   tags = {
-    Name        = var.cluster_name
+    Name        = var.name
     Environment = var.environment
   }
 }
@@ -17,19 +17,19 @@ resource "aws_eks_cluster" "this" {
 resource "aws_eks_node_group" "this" {
   cluster_name    = aws_eks_cluster.this.name
   node_group_name = var.node_group_name
-  node_role_arn   = var.node_group_role_arn
-  subnet_ids      = var.node_group_subnet_ids
+  node_role_arn   = var.node_role_arn
+  subnet_ids      = var.subnet_ids
   
   scaling_config {
-    desired_size  = var.node_group_desired_capacity
-    max_size      = var.node_group_max_capacity
-    min_size      = var.node_group_min_capacity
+    desired_size  = var.desired_capacity
+    max_size      = var.max_size
+    min_size      = var.min_size
   }
   
-  instance_types  = [var.node_instance_type]
+  instance_types  = var.instance_types
   
   remote_access {
-    ec2_ssh_key   = var.node_group_ec2_key_pair
+    ec2_ssh_key   = var.ec2_ssh_key
   }
 
   tags = {

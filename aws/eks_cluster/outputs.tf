@@ -6,13 +6,13 @@ clusters:
 - cluster:
     server: ${aws_eks_cluster.this.endpoint}
     certificate-authority-data: ${base64encode(aws_eks_cluster.this.certificate_authority.0.data)}
-  name: ${var.cluster_name}
+  name: ${var.name}
 contexts:
 - context:
-    cluster: ${var.cluster_name}
+    cluster: ${var.name}
     user: aws
-  name: ${var.cluster_name}
-current-context: ${var.cluster_name}
+  name: ${var.name}
+current-context: ${var.name}
 kind: Config
 preferences: {}
 users:
@@ -24,7 +24,7 @@ users:
       args:
         - "token"
         - "-i"
-        - ${var.cluster_name}
+        - ${var.name}
 EOF
   sensitive = true
 }

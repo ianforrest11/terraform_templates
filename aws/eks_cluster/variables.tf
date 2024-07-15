@@ -1,74 +1,77 @@
-variable "cluster_name" {
-  nullable = false
-  type     = string
+variable "desired_capacity" {
+  description = "The desired number of worker nodes in the EKS node group."
+  nullable    = false
+  type        = number
 }
 
-variable "cluster_version" {
-  nullable = false
-  type     = string
+variable "ec2_ssh_key" {
+  description = "The name of the EC2 key pair to use for SSH access to the worker nodes."
+  nullable    = false
+  type        = string
 }
 
 variable "environment" {
-  nullable = false
-  type     = string
+  description = "The environment for the EKS cluster (e.g., dev, prod)."
+  nullable    = false
+  type        = string
 }
 
-variable "eks_role_arn" {
-  nullable = false
-  type     = string
+variable "instance_types" {
+  description = "A list of instance types for the EKS node group."
+  nullable    = false
+  type        = list(string)
 }
 
-variable "eks_subnet_ids" {
-  nullable = false
-  type     = list(string)
+variable "max_size" {
+  description = "The maximum number of worker nodes in the EKS node group."
+  nullable    = false
+  type        = number
 }
 
-variable "node_group_desired_capacity" {
-  nullable = false
-  type     = number
+variable "min_size" {
+  description = "The minimum number of worker nodes in the EKS node group."
+  nullable    = false
+  type        = number
 }
 
-variable "node_group_ec2_key_pair" {
-  nullable = false
-  type     = string
-}
-
-variable "node_group_max_capacity" {
-  nullable = false
-  type     = number
-}
-
-variable "node_group_min_capacity" {
-  nullable = false
-  type     = number
+variable "name" {
+  description = "The name of the EKS cluster."
+  nullable    = false
+  type        = string
 }
 
 variable "node_group_name" {
-  nullable = false
-  type     = string
+  description = "The name of the EKS node group."
+  nullable    = false
+  type        = string
 }
 
-variable "node_group_role_arn" {
-  nullable = false
-  type     = string
+variable "node_role_arn" {
+  description = "The ARN of the IAM role to associate with the EKS node group."
+  nullable    = false
+  type        = string
 }
 
-variable "node_group_subnet_ids" {
-  nullable = false
-  type     = list(string)
-}
-
-variable "node_instance_type" {
-  nullable = false
-  type     = string
+variable "role_arn" {
+  description = "The ARN of the IAM role to associate with the EKS cluster."
+  nullable    = false
+  type        = string
 }
 
 variable "security_group_ids" {
-  nullable = false
-  type     = list(string)
+  description = "A list of security group IDs to associate with the EKS cluster."
+  nullable    = false
+  type        = list(string)
 }
 
 variable "subnet_ids" {
-  nullable = false
-  type     = list(string)
+  description = "A list of subnet IDs to associate with the EKS cluster."
+  nullable    = false
+  type        = list(string)
+}
+
+variable "version" {
+  description = "The version of Kubernetes to use for the EKS cluster."
+  nullable    = false
+  type        = string
 }
