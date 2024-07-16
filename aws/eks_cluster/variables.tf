@@ -70,7 +70,7 @@ variable "subnet_ids" {
   type        = list(string)
 }
 
-variable "version" {
+variable "eks_version" {
   description = "The version of Kubernetes to use for the EKS cluster."
   nullable    = false
   type        = string
