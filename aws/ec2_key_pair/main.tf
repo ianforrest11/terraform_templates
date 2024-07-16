@@ -12,7 +12,7 @@ resource "aws_key_pair" "this" {
 
 # Store the private key in AWS Secrets Manager
 resource "aws_secretsmanager_secret" "this" {
-  name = "${var.secret_name_prefix}-private"
+  name = "${var.secret_name_prefix}_private"
 }
 
 resource "aws_secretsmanager_secret_version" "this" {
