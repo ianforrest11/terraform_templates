@@ -25,8 +25,7 @@ variable "rsa_bits" {
 }
 
 variable "secret_name_prefix" {
-  description = "The algorithm to use for the SSH key pair"
+  description = "name of secret"
   type        = string
-  default     = "RSA"
   nullable    = false
 }
