@@ -1,4 +1,4 @@
-variable "desired_capacity" {
+variable "desired_size" {
   description = "The desired number of worker nodes in the EKS node group."
   nullable    = false
   type        = number
