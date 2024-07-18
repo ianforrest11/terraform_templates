@@ -1,9 +1,7 @@
 resource "aws_iam_role" "this" {
   for_each = var.roles
   name     = each.key
-
   assume_role_policy = file("../json/${each.value.assume_role_policy_name}.json")
-
   tags = {
     environment = each.value.environment
     purpose     = each.value.purpose
@@ -33,7 +31,7 @@ locals {
 # Attach policies to roles
 resource "aws_iam_role_policy_attachment" "this" {
   for_each = {
-    for idx, role_policy in local.flattened_role_policy_map : "${role_policy.role}-${idx}" => role_policy
+    for role_policy in local.flattened_role_policy_map : "${role_policy.role}-${role_policy.policy_arn}" => role_policy
   }
   role       = each.value.role
   policy_arn = each.value.policy_arn
