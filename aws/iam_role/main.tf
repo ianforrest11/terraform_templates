@@ -13,7 +13,7 @@ locals {
   role_policy_map = {
     for role, details in var.roles : role => [
       for policy in details.policies : {
-        role       = details.name
+        role       = role
         policy_arn = lookup(var.policies, policy)
       }
     ]
@@ -31,7 +31,7 @@ locals {
 # Attach policies to roles
 resource "aws_iam_role_policy_attachment" "this" {
   for_each = {
-    for role_policy in local.flattened_role_policy_map : "${role_policy.role}-${role_policy.policy_arn}" => role_policy
+    for role_policy in local.flattened_role_policy_map : "${role_policy.role}-${basename(role_policy.policy_arn)}" => role_policy
   }
   role       = each.value.role
   policy_arn = each.value.policy_arn
