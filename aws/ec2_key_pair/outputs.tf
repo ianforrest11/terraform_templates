@@ -1,4 +1,4 @@
-output "key_name" {
-  description = "The name of the SSH key pair"
-  value       = aws_key_pair.this.key_name
+output "private_key_pem" {
+  value     = tls_private_key.my_key_pair.private_key_pem
+  sensitive = true
 }

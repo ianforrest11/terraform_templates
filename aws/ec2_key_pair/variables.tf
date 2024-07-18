@@ -4,8 +4,16 @@ variable "key_name" {
   nullable    = false
 }
 
-variable "public_key" {
-  description = "The public key material for the SSH key pair"
+variable "algorithm" {
+  description = "The algorithm to use for the SSH key pair"
   type        = string
+  default     = "RSA"
+  nullable    = false
+}
+
+variable "rsa_bits" {
+  description = "The number of bits for the RSA key"
+  type        = number
+  default     = 2048
   nullable    = false
 }
