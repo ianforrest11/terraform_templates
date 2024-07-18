@@ -26,7 +26,7 @@ locals {
   user_policy_map = {
     for user, details in var.users : user => [
       for policy in details.policies : {
-        user       = details.username
+        user       = user
         policy_arn = policy
       }
     ]
@@ -44,7 +44,7 @@ locals {
 # attach policies to users
 resource "aws_iam_user_policy_attachment" "this" {
   for_each = {
-    for idx, user_policy in local.flattened_user_policy_map : "${user_policy.user}-${idx}" => user_policy
+    for user_policy in local.flattened_user_policy_map : "${user_policy.user}-${basename(user_policy.policy_arn)}" => user_policy
   }
   user       = each.value.user
   policy_arn = each.value.policy_arn
