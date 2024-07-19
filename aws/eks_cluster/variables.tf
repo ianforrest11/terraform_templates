@@ -81,3 +81,14 @@ variable "eks_version" {
   nullable    = false
   type        = string
 }
+
+variable "image_id" {
+  description = "id of ami image to use in eks node group launch template"
+  nullable    = false
+  type        = string
+}
+
+variable "resource_type" {
+  description = "resource type of launch template tags"
+  type        = string
+}
