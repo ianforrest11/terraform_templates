@@ -47,3 +47,9 @@ variable "environment" {
   type        = string
   default     = "dev"
 }
+
+variable "security_group_ids" {
+  description = "A list of security group IDs to associate with the EKS cluster."
+  nullable    = false
+  type        = list(string)
+}
