@@ -24,12 +24,6 @@ variable "key_name" {
   type        = string
 }
 
-variable "allowed_ssh_cidr_blocks" {
-  description = "List of CIDR blocks allowed to SSH into the bastion host"
-  type        = list(string)
-  default     = ["0.0.0.0/0"]
-}
-
 variable "associate_public_ip_address" {
   description = "Associate a public IP address with the bastion host"
   type        = bool
