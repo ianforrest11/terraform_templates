@@ -23,6 +23,10 @@ resource "aws_launch_template" "this" {
       Environment = var.environment
     }
   }
+  metadata_options {
+    http_tokens                 = var.http_tokens
+    http_put_response_hop_limit = var.http_put_response_hop_limit
+  }
   network_interfaces {
     security_groups = var.node_security_groups
   }

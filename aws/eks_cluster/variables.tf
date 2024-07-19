@@ -92,3 +92,15 @@ variable "resource_type" {
   description = "resource type of launch template tags"
   type        = string
 }
+
+variable "http_tokens" {
+  description = "The state of token usage for your instance metadata requests. Use 'required' to enforce the use of IMDSv2."
+  type        = string
+  default     = "required"
+}
+
+variable "http_put_response_hop_limit" {
+  description = "The desired HTTP PUT response hop limit for instance metadata requests."
+  type        = number
+  default     = 2
+}

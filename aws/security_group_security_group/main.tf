@@ -32,13 +32,11 @@ resource "aws_security_group" "this" {
       description = egress.value.description
     }
   }
-
   lifecycle {
     ignore_changes = [
       ingress,
       egress
     ]
   }
-  
   tags = var.tags
 }
