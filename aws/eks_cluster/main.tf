@@ -17,7 +17,7 @@ resource "aws_eks_cluster" "this" {
 resource "aws_launch_template" "this" {
   name_prefix   = "${var.node_group_name}_"
   image_id      = var.image_id  # Specify the AMI ID or use a data source to fetch the latest AMI
-
+  key_name      = var.ec2_ssh_key
   tag_specifications {
     resource_type = var.resource_type
     tags = {
@@ -48,11 +48,6 @@ resource "aws_eks_node_group" "this" {
   launch_template {
     id      = aws_launch_template.this.id
     version = "$Latest"
-  }
-
-  remote_access {
-    ec2_ssh_key   = var.ec2_ssh_key
-    source_security_group_ids = var.source_security_group_ids
   }
 
   tags = {

@@ -64,11 +64,11 @@ variable "security_group_ids" {
   type        = list(string)
 }
 
-variable "source_security_group_ids" {
-  description = "A list of security group IDs to associate with the node groups of an EKS cluster."
-  nullable    = false
-  type        = list(string)
-}
+# variable "source_security_group_ids" {
+#   description = "A list of security group IDs to associate with the node groups of an EKS cluster."
+#   nullable    = false
+#   type        = list(string)
+# }
 
 variable "subnet_ids" {
   description = "A list of subnet IDs to associate with the EKS cluster."
