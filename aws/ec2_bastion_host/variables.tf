@@ -1,9 +1,3 @@
-variable "region" {
-  description = "AWS region to deploy the bastion host"
-  type        = string
-  default     = "us_west_2"
-}
-
 variable "ami_id" {
   description = "AMI ID for the bastion host"
   type        = string
