@@ -1,4 +1,4 @@
-resource "aws_lb" "example" {
+resource "aws_lb" "this" {
   name               = var.lb_name
   internal           = var.lb_internal
   load_balancer_type = var.lb_type
