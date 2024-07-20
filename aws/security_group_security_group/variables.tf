@@ -13,40 +13,7 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "ingress_rules" {
-  description = "A list of ingress rules"
-  type = list(object({
-    from_port        = number
-    to_port          = number
-    protocol         = string
-    cidr_blocks      = list(string)
-    ipv6_cidr_blocks = list(string)
-    prefix_list_ids  = list(string)
-    security_groups  = list(string)
-    self             = bool
-    description      = string
-  }))
-  default = []
-}
-
-variable "egress_rules" {
-  description = "A list of egress rules"
-  type = list(object({
-    from_port        = number
-    to_port          = number
-    protocol         = string
-    cidr_blocks      = list(string)
-    ipv6_cidr_blocks = list(string)
-    prefix_list_ids  = list(string)
-    security_groups  = list(string)
-    self             = bool
-    description      = string
-  }))
-  default = []
-}
-
-variable "tags" {
-  description = "A map of tags to assign to the resource"
-  type        = map(string)
-  default     = {}
+variable "environment" {
+  description = "name of environment"
+  type        = string
 }
