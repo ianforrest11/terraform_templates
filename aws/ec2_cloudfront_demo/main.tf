@@ -7,5 +7,5 @@ resource "aws_instance" "ec2_cloudfront_demo" {
   tags = {
     Name         = var.instance_name
   }
-  security_groups = var.security_group_ids
+  vpc_security_group_ids = var.vpc_security_group_ids
 }
