@@ -4,10 +4,6 @@ resource "aws_s3_bucket" "ec2_cloudfront_demo" {
   acl            = var.acl
   force_destroy  = var.force_destroy
 
-  versioning {
-    enabled = var.versioning
-  }
-
   tags = var.bucket_tags
 }
 

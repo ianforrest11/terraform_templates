@@ -16,12 +16,6 @@ variable "force_destroy" {
   default     = true
 }
 
-variable "versioning" {
-  description = "Enable versioning for the S3 bucket"
-  type        = bool
-  default     = true
-}
-
 variable "target_prefix" {
   description = "Target prefix for S3 bucket logging"
   type        = string
