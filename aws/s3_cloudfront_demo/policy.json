@@ -25,5 +25,4 @@
         "Resource": "${bucket_arn}/*"
       }
     ]
-  }
-  
+  }  
