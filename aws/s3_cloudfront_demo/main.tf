@@ -33,8 +33,8 @@ data "aws_iam_policy_document" "s3_policy" {
     ]
 
     principals {
-      type        = "Service"
-      identifiers = ["cloudfront.amazonaws.com"]
+      type        = "AWS"
+      identifiers = ["arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${var.cloudfront_oa_identity}"]
     }
   }
 }
