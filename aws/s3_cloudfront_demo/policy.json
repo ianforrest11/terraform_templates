@@ -23,14 +23,7 @@
           "s3:DeleteObject"
         ],
         "Resource": "${bucket_arn}/*"
-      },
-      {
-        "Effect": "Allow",
-        "Principal": {
-          "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${cloudfront_oa_identity}"
-        },
-        "Action": "s3:GetObject",
-        "Resource": "${bucket_arn}/*"
       }
     ]
-  }  
+  }
+  
