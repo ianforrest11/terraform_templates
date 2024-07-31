@@ -21,7 +21,6 @@ resource "aws_s3_bucket_policy" "ec2_cloudfront_demo" {
 
 resource "aws_s3_bucket_acl" "ec2_cloudfront_demo" {
   bucket = aws_s3_bucket.ec2_cloudfront_demo.id
-
   access_control_policy {
     owner {
       display_name = var.owner_display_name
