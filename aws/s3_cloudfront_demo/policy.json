@@ -1,0 +1,36 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "${user_arn}"
+        },
+        "Action": [
+          "s3:ListBucket",
+          "s3:GetBucketLocation"
+        ],
+        "Resource": "${bucket_arn}"
+      },
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "${user_arn}"
+        },
+        "Action": [
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:DeleteObject"
+        ],
+        "Resource": "${bucket_arn}/*"
+      },
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${cloudfront_oa_identity}"
+        },
+        "Action": "s3:GetObject",
+        "Resource": "${bucket_arn}/*"
+      }
+    ]
+  }  
