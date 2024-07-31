@@ -3,6 +3,12 @@ variable "name" {
   type     = string
 }
 
+variable "enable_dns_hostnames" {
+  nullable = true
+  type     = bool
+  default  = true
+}
+
 variable "cidr_block" {
   nullable = true
   type     = string
