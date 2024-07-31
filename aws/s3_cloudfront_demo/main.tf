@@ -8,12 +8,13 @@ resource "aws_s3_bucket" "ec2_cloudfront_demo" {
     enabled = var.versioning
   }
 
-  logging {
-    target_bucket = aws_s3_bucket.ec2_cloudfront_demo.id
-    target_prefix = var.target_prefix
-  }
-
   tags = var.bucket_tags
+}
+
+resource "aws_s3_bucket_logging" "ec2_cloudfront_demo" {
+  bucket        = aws_s3_bucket.ec2_cloudfront_demo.id
+  target_bucket = aws_s3_bucket.ec2_cloudfront_demo.id
+  target_prefix = var.target_prefix
 }
 
 resource "aws_s3_bucket_policy" "ec2_cloudfront_demo" {
