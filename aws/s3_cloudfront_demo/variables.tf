@@ -4,12 +4,6 @@ variable "bucket_name" {
   default     = "ian-cloudfront-demo-logs-bucket-ap"
 }
 
-variable "acl" {
-  description = "ACL for the S3 bucket"
-  type        = string
-  default     = "log-delivery-write"
-}
-
 variable "force_destroy" {
   description = "Force destroy the bucket"
   type        = bool

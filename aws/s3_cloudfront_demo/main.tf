@@ -1,9 +1,6 @@
 resource "aws_s3_bucket" "ec2_cloudfront_demo" {
   bucket = var.bucket_name
-
-  acl            = var.acl
   force_destroy  = var.force_destroy
-
   tags = var.bucket_tags
 }
 
