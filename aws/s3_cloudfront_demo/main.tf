@@ -34,14 +34,5 @@ resource "aws_s3_bucket_acl" "ec2_cloudfront_demo" {
       display_name = var.owner_display_name
       id           = var.owner_id
     }
-
-    grant {
-      grantee {
-        id           = var.grantee_id
-        type         = "CanonicalUser"
-        display_name = var.grantee_display_name
-      }
-      permission = "FULL_CONTROL"
-    }
   }
 }
