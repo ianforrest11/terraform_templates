@@ -26,13 +26,6 @@ resource "aws_cloudfront_distribution" "example" {
     origin_request_policy_id    = var.origin_request_policy_id
     compress                    = var.compress_objects
     smooth_streaming            = false
-
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
   }
 
   restrictions {
