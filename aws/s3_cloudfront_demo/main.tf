@@ -6,6 +6,14 @@ resource "aws_s3_bucket" "example" {
   acl = "log-delivery-write"
 }
 
+resource "aws_s3_bucket_ownership_controls" "example" {
+  bucket = aws_s3_bucket.example.bucket
+
+  rule {
+    object_ownership = "ObjectWriter"
+  }
+}
+
 resource "aws_s3_bucket_policy" "example" {
   bucket = aws_s3_bucket.example.id
   policy = templatefile("${path.module}/policy.json", {
