@@ -34,6 +34,8 @@ resource "aws_cloudfront_distribution" "example" {
     target_origin_id = var.origin_name
     path_pattern = "/*.png"
     viewer_protocol_policy = "allow-all"
+    cache_policy_id             = var.cache_policy_id
+    origin_request_policy_id    = var.origin_request_policy_id
   }
 
   restrictions {
