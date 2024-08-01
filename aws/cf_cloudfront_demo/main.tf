@@ -28,6 +28,14 @@ resource "aws_cloudfront_distribution" "example" {
     smooth_streaming            = false
   }
 
+  ordered_cache_behavior {
+    cached_methods  = ["GET", "HEAD"]
+    allowed_methods = ["GET", "HEAD"]
+    target_origin_id = var.origin_name
+    path_pattern = "/*.png"
+    viewer_protocol_policy = "allow-all"
+  }
+
   restrictions {
     geo_restriction {
       restriction_type = "none"
