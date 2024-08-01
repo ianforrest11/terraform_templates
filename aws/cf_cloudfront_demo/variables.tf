@@ -70,5 +70,5 @@ variable "logging_bucket" {
 variable "logging_prefix" {
   description = "The logging prefix for standard logging"
   type        = string
-  default     = "/logs/"
+  default     = "logs/"
 }
