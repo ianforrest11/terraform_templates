@@ -23,6 +23,27 @@
           "s3:DeleteObject"
         ],
         "Resource": "${bucket_arn}/*"
+      },
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "cloudfront.amazonaws.com"
+        },
+        "Action": "s3:PutObject",
+        "Resource": "${bucket_arn}/*",
+        "Condition": {
+          "StringEquals": {
+            "AWS:SourceAccount": "${aws_account_id}"
+          }
+        }
+      },
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "cloudfront.amazonaws.com"
+        },
+        "Action": "s3:GetBucketAcl",
+        "Resource": "${bucket_arn}"
       }
     ]
   }  
