@@ -4,6 +4,7 @@ resource "aws_s3_bucket" "example" {
     Name = var.bucket_name
   }
   acl = "log-delivery-write"
+  depends_on = [aws_s3_bucket_ownership_controls.example]
 }
 
 resource "aws_s3_bucket_ownership_controls" "example" {
