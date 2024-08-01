@@ -6,7 +6,7 @@ variable "origin_domain" {
 variable "origin_protocol_policy" {
   description = "The protocol to use"
   type        = string
-  default     = "match-viewer"
+  default     = "http-only"
 }
 
 variable "http_port" {
