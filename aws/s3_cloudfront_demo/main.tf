@@ -1,14 +1,21 @@
 data "aws_canonical_user_id" "current" {}
 
-resource "aws_s3_bucket" "example" {
+resource "aws_s3_bucket" "this" {
   bucket = var.bucket_name
   tags = {
-    Name = var.bucket_name
+    name = var.bucket_name
   }
 }
 
+# Resource to avoid error "AccessControlListNotSupported: The bucket does not allow ACLs"
+resource "aws_s3_bucket_ownership_controls" "this" {
+  bucket = aws_s3_bucket.this.id
+  rule {
+    object_ownership = "ObjectWriter"
+  }
+}
 resource "aws_s3_bucket_acl" "this" {
-  bucket = aws_s3_bucket.example.bucket
+  bucket = aws_s3_bucket.this.bucket
 
   access_control_policy {
     owner {
@@ -33,4 +40,16 @@ resource "aws_s3_bucket_acl" "this" {
       permission = "FULL_CONTROL"
     }
   }
+  depends_on = [aws_s3_bucket_ownership_controls.this]
+}
+
+
+
+resource "aws_s3_bucket_public_access_block" "this" {
+  bucket = aws_s3_bucket.this.bucket
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
