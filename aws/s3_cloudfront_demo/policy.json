@@ -33,7 +33,7 @@
         "Resource": "${bucket_arn}/*",
         "Condition": {
           "StringEquals": {
-            "AWS:SourceAccount": "${aws_account_id}"
+            "AWS:SourceAccount": "128333337075"
           }
         }
       },
