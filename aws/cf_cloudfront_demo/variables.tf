@@ -38,6 +38,18 @@ variable "allowed_http_methods" {
   default     = ["GET", "HEAD"]
 }
 
+variable "default_cache_policy_id" {
+  description = "Cache policy ID to use origin cache control headers"
+  type        = string
+  default     = "83da9c7e-98b4-4e11-a168-04f0df8e2c65" # AWS managed cache policy ID for 'Use Origin Cache Headers'
+}
+
+variable "default_origin_request_policy_id" {
+  description = "Origin request policy ID for all viewer"
+  type        = string
+  default     = "216adef6-5c7f-47e4-b989-5492eafa07d3"
+}
+
 variable "cache_policy_id" {
   description = "Cache policy ID to use origin cache control headers"
   type        = string
@@ -47,7 +59,7 @@ variable "cache_policy_id" {
 variable "origin_request_policy_id" {
   description = "Origin request policy ID for all viewer"
   type        = string
-  default     = "b689b0a8-53d0-40ab-baf2-68738e2966ac" # AWS managed origin request policy ID for 'All Viewer'
+  default     = "216adef6-5c7f-47e4-b989-5492eafa07d3" # AWS managed origin request policy ID for 'All Viewer'
 }
 
 variable "price_class" {

@@ -22,8 +22,8 @@ resource "aws_cloudfront_distribution" "example" {
     allowed_methods = var.allowed_http_methods
     cached_methods  = ["GET", "HEAD"]
 
-    cache_policy_id             = var.cache_policy_id
-    origin_request_policy_id    = var.origin_request_policy_id
+    cache_policy_id             = var.default_cache_policy_id
+    origin_request_policy_id    = var.default_origin_request_policy_id
     compress                    = var.compress_objects
     smooth_streaming            = false
   }
