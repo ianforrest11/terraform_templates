@@ -41,7 +41,7 @@ variable "allowed_http_methods" {
 variable "default_cache_policy_id" {
   description = "Cache policy ID to use origin cache control headers"
   type        = string
-  default     = "83da9c7e-98b4-4e11-a168-04f0df8e2c65" # AWS managed cache policy ID for 'Use Origin Cache Headers'
+  default     = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad" # AWS managed cache policy ID for 'cache disabled'
 }
 
 variable "default_origin_request_policy_id" {
@@ -50,14 +50,14 @@ variable "default_origin_request_policy_id" {
   default     = "216adef6-5c7f-47e4-b989-5492eafa07d3"
 }
 
-variable "cache_policy_id" {
-  description = "Cache policy ID to use origin cache control headers"
+variable "png_cache_policy_id" {
+  description = "Cache policy ID for png files"
   type        = string
-  default     = "658327ea-f89d-4fab-a63d-7e88639e58f6" # AWS managed cache policy ID for 'Use Origin Cache Headers'
+  default     = "658327ea-f89d-4fab-a63d-7e88639e58f6" # AWS managed cache policy ID for 'CacheOptimized'
 }
 
-variable "origin_request_policy_id" {
-  description = "Origin request policy ID for all viewer"
+variable "png_origin_request_policy_id" {
+  description = "Origin request policy ID for png files"
   type        = string
   default     = "216adef6-5c7f-47e4-b989-5492eafa07d3" # AWS managed origin request policy ID for 'All Viewer'
 }
